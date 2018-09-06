@@ -68,4 +68,17 @@ public class Client extends JFrame {
 		inputStream = new ObjectInputStream(socket.getInputStream());
 		showMessage ("\nПотоки готовы к работе!");
 	}
+	//checking data during chatting
+	private void whileChatting() throws IOException {
+		readyToType(true);
+		do {
+			try {
+				message = (String) inputStream.readObject();
+				showMessage ("\n " + message);
+			}
+			catch(ClassNotFoundException bla) {
+				showMessage ("\nНепонятно!!!");
+			}
+		}while(!message.equals("СЕРВЕР - *"));
+	}
 }
