@@ -99,4 +99,16 @@ public class Server extends JFrame{
 			e.printStackTrace();
 		}
 	}
+	//sending a message to client
+	private void sendMessage (String message)
+	{
+		try {
+			outputStream.writeObject("яепбеп - " + message);
+			outputStream.flush();
+			showMessage("\nяепбеп - " + message);
+		}
+		catch(IOException e){
+			chatWindow.append("\nньхайю: всбюй, ъ ме лнцс щрн нропюбхрэ!!!");
+		}
+	}
 }
