@@ -61,4 +61,11 @@ public class Client extends JFrame {
 		socket = new Socket (InetAddress.getByName(servverIP), 7777);
 		showMessage ("Теперь ты подключен к:" + socket.getInetAddress().getHostName();
 	}
+	//setting up streams for sending and getting messages
+	private void setupStreams () throws IOException {
+		outputStream = new ObjectOutputStream(socket.getOutputStream());
+		outputStream.flush();
+		inputStream = new ObjectInputStream(socket.getInputStream());
+		showMessage ("\nПотоки готовы к работе!");
+	}
 }
