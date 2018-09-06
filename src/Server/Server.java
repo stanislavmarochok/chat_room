@@ -62,6 +62,12 @@ public class Server extends JFrame{
 		showMessage("\nОжидание подключения клиентов...\n");
 		connection = serverSocket.accept();
 		showMessage("\nСоединен с \n" + connection.getInetAddress().getHostName());
-		
+	}
+	//setting up all the streams for sending and getting data
+	private void setUpStreams () throws IOException{
+		outputStream = new ObjectOutputStream (connection.getOutputStream());
+		outputStream.flush();
+		inputStream = new ObjectInputStream (connection.getInputStream());
+		showMessage ("\nПоток установлен!!!\n");
 	}
 }
