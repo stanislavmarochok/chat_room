@@ -70,4 +70,21 @@ public class Server extends JFrame{
 		inputStream = new ObjectInputStream (connection.getInputStream());
 		showMessage ("\nПоток установлен!!!\n");
 	}
+	//checking data during the chatting
+	private void whileChatting () throws IOException{
+		String message = "Вы подключенны!!";
+		sendMessage (message);
+		readyToType(true);
+		do {
+			try {
+				message = (String) inputStream.readObject();
+				showMessage("\n" + message);
+			}
+			catch(ClassNotFoundException c) {
+				showMessage("\nНе пойму что за хрень отправил пользователь!!!");
+				
+			}
+		}while (!message.equals("КЛИЕНТ - *"));
+		
+	}
 }
