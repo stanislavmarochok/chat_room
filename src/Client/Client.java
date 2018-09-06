@@ -81,4 +81,17 @@ public class Client extends JFrame {
 			}
 		}while(!message.equals("СЕРВЕР - *"));
 	}
+	//closing all the streams and sockets
+	private void closeConnection() {
+		showMessage("\nЗакрываем соединение...");
+		readyToType(false);
+		try {
+			outputStream.close();
+			inputStream.close();
+			socket.close();
+		}
+		catch(IOException c) {
+			c.printStackTrace();
+		}
+	}
 }
