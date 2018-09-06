@@ -116,4 +116,16 @@ public class Client extends JFrame {
 				}
 			);
 	}
+	//setting up right to input text
+	private void readyToType(final boolean tof) {
+		SwingUtilities.invokeLater(
+				new Runnable() {
+					@Override
+					public void run() {
+						userInputText.setEditable(tof);
+					}
+				}
+				);
+		
+	}
 }
