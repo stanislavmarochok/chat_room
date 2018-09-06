@@ -111,4 +111,16 @@ public class Server extends JFrame{
 			chatWindow.append("\nньхайю: всбюй, ъ ме лнцс щрн нропюбхрэ!!!");
 		}
 	}
+	//updating thwe chat windows
+	private void showMessage (final String text){
+		SwingUtilities.invokeLater(
+			new Runnable() {
+				
+				@Override
+				public void run(){
+					 chatWindow.append(text);
+				}				
+			}
+			);
+	}
 }
