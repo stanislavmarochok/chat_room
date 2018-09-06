@@ -84,7 +84,19 @@ public class Server extends JFrame{
 				showMessage("\nНе пойму что за хрень отправил пользователь!!!");
 				
 			}
-		}while (!message.equals("КЛИЕНТ - *"));
-		
+		}while (!message.equals("КЛИЕНТ - *"));	
+	}
+	//close all the sockets and stream when user finished chatting
+	private void closeConnection () {
+		showMessage ("\nЗакрытие соединения");
+		readyToType (false);
+		try {
+			outputStream.close();
+			inputStream.close();
+			connection.close();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
