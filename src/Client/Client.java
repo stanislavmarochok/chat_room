@@ -58,8 +58,8 @@ public class Client extends JFrame {
 	//connect to server
 	private void connectToServer () throws IOException{
 		showMessage ("\nПытаемся подключиться...\n");
-		socket = new Socket (InetAddress.getByName(servverIP), 7777);
-		showMessage ("Теперь ты подключен к:" + socket.getInetAddress().getHostName();
+		socket = new Socket (InetAddress.getByName(serverIP), 7777);
+		showMessage ("Теперь ты подключен к:" + socket.getInetAddress().getHostName());
 	}
 	//setting up streams for sending and getting messages
 	private void setupStreams () throws IOException {
@@ -92,6 +92,17 @@ public class Client extends JFrame {
 		}
 		catch(IOException c) {
 			c.printStackTrace();
+		}
+	}
+	//sending messages on server
+	private void sendMessage (String message) {
+		try {
+			outputStream.writeObject("КЛИЕНТ - " + message);
+			outputStream.flush();
+			showMessage("\nКЛИЕНТ - " + message);
+		}
+		catch(IOException c){
+			chatWindow.append("\nЧто-то пошло не так во время отправки сообщения...");
 		}
 	}
 }
