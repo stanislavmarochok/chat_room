@@ -38,4 +38,21 @@ public class Client extends JFrame {
 		setSize(300, 600);
 		setVisible(true);
 	}
+	//starting of client
+	public void startClient () {
+		try {
+			connectToServer();
+			setupStreams();
+			whileChatting();
+		}
+		catch(EOFException e) {
+			showMessage ("\nКлиент поравл соединение");
+		}
+		catch (IOException c)
+		{
+			c.printStackTrace();
+		}finally {
+			closeConnection();
+		}
+	}
 }
