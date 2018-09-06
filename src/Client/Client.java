@@ -16,5 +16,26 @@ public class Client extends JFrame {
 	private String serverIP;
 	private Socket socket;
 	
-	
+	//constructor
+	public Client(String host) {
+		super ("Клиентская часть");
+		serverIP = host;
+		userInputText = new JTextField();
+		userInputText.setEditable(false);
+		userInputText.addActionListener(
+					new ActionListener() {
+						@Override
+						public void actionPerformed (ActionEvent e) {
+							sendMessage(e.getActionCommand());
+							userInputText.setText("");
+						}
+					}
+				);
+		add(userInputText, BorderLayout.NORTH);
+		chatWindow = new JTextArea();
+		chatWindow.setBackground(Color.LIGHT_GRAY);
+		add (new JScrollPane(chatWindow), BorderLayout.CENTER);
+		setSize(300, 600);
+		setVisible(true);
+	}
 }
