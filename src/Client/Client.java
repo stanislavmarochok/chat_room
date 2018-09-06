@@ -105,4 +105,15 @@ public class Client extends JFrame {
 			chatWindow.append("\nЧто-то пошло не так во время отправки сообщения...");
 		}
 	}
+	//updating chat window
+	private void showMessage (final String msg) {
+		SwingUtilities.invokeLater(
+				new Runnable() {
+					@Override
+					public void run() {
+						chatWindow.append(msg);
+					}
+				}
+			);
+	}
 }
