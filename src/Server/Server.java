@@ -33,4 +33,35 @@ public class Server extends JFrame{
 		 setSize (300, 600);
 		 setVisible (true);
 	}
+	//setting up and starting the server's part of the programm
+	public void startServer()
+	{
+		try	{
+			serverSocket = new ServerSocket (7777, 100);
+			while (true)
+			{
+				try {
+					waitForConnection();
+					setupStreams();
+					whileChatting ();
+				}
+				catch (EOFException eofException) {
+					showMessage ("\nСервер оборвал соединение!!!\n");
+				}finally {
+					closeConnection ();
+				}
+			}
+		}
+		catch(IOException ioException)
+		{
+			ioException.printStackTrace();
+		}
+	}
+	//waiting for connection and printing all the info about connecting
+	private void waitForConnection () throws IOException {
+		showMessage("\nОжидание подключения клиентов...\n");
+		connection = serverSocket.accept();
+		showMessage("\nСоединен с \n" + connection.getInetAddress().getHostName());
+		
+	}
 }
