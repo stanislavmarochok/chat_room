@@ -55,4 +55,10 @@ public class Client extends JFrame {
 			closeConnection();
 		}
 	}
+	//connect to server
+	private void connectToServer () throws IOException{
+		showMessage ("\nПытаемся подключиться...\n");
+		socket = new Socket (InetAddress.getByName(servverIP), 7777);
+		showMessage ("Теперь ты подключен к:" + socket.getInetAddress().getHostName();
+	}
 }
