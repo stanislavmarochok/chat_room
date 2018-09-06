@@ -42,7 +42,7 @@ public class Server extends JFrame{
 			{
 				try {
 					waitForConnection();
-					setupStreams();
+					setUpStreams();
 					whileChatting ();
 				}
 				catch (EOFException eofException) {
@@ -122,5 +122,17 @@ public class Server extends JFrame{
 				}				
 			}
 			);
+		}
+	//setting up right for input of the data
+	private void readyToType(final boolean trueOrFalse ) {
+		SwingUtilities.invokeLater(
+					new Runnable () {
+						
+						@Override
+						public void run() {
+							userInputText.setEditable(trueOrFalse);
+						}
+					}
+				);
 	}
 }
